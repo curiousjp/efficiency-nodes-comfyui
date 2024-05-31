@@ -11,11 +11,11 @@ import comfy.sd
 import comfy.controlnet
 import comfy.model_management
 import comfy.sample
+import comfy.samplers
+import comfy.sampler_helpers
 from . import bnk_tiling as tiling
 import latent_preview
-#import torch
-#import itertools
-#import numpy as np
+import comfy.utils
 MAX_RESOLUTION=8192
 
 #######################
@@ -122,7 +122,7 @@ def sample_common(model, add_noise, noise_seed, tile_width, tile_height, tiling_
     real_model = None
     # positive_copy = comfy.sample.convert_cond(positive)
     # negative_copy = comfy.sample.convert_cond(negative)
-    #change made due to changes in omfy.sampler's 'convert cond' has been removed.. check if any error persists.
+    #change made due to changes in comfy.sampler's 'convert cond' has been removed.. check if any error persists.
     positive_copy = comfy.sampler_helpers.convert_cond(positive)
     negative_copy = comfy.sampler_helpers.convert_cond(negative) 
     modelPatches, inference_memory = comfy.sample.get_additional_models(positive_copy, negative_copy, model.model_dtype())
